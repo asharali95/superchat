@@ -4,18 +4,15 @@ import firebase,{auth} from "./../../Firebase/firebase";
 const SignInWithGoogle = () => {
   var signIn = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      prompt: "select_account",
+    })
     auth.signInWithPopup(provider);
   };
-  var signOut = () => {
-    return (
-      auth.currentUser && (
-        <button onClick={() => auth.signOut()}>Sign Out</button>
-      )
-    );
-  };
+
   return (
     <div>
-      <button onClick={signIn}>Sign in with Google</button>
+      <button className="sign-in" onClick={signIn}>Sign in with Google</button>
     </div>
   );
 };
